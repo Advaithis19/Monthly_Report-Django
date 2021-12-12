@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
     <title>{% block title %} My Django App {% endblock %}</title>
     <meta name="Generator" content="Drupal 7 (http://drupal.org)" />
     <link rel="canonical" href="/rvce-departments" />
@@ -43,7 +43,7 @@
     <link type="text/css" rel="stylesheet"
         href="https://rvce.edu.in/sites/default/files/css/css__gHmKb6iiQ92ec4TUIzTtAqZ7CIKgqwDHxI6h21e77w.css"
         media="all" />
-    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    
 </head>
 
 <body class="html not-front not-logged-in page-node page-node- page-node-1274 node-type-page section-rvce-departments">
@@ -73,16 +73,15 @@
 
         <div
             style="display:inline-flex; float: right; padding: 15px; background-color:#27447E;width: 100%; margin-bottom: 20px; text-align: right; ">
+            <span><a href = {% url 'signup' %} style="text-decoration: none; color: #fff; margin: 1em;">Sign up</a></span>
+            <span><a href = {% url 'login' %} style="text-decoration: none; color: #fff; margin: 1em;">Login</a></span>
         </div>
 
     </div>
-    
+    <main>
         {% block content %}
         {%endblock%}
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="{% static 'js/index.js' %}"></script>
 </body>
-
 </html>

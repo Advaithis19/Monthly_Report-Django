@@ -7,7 +7,7 @@ from django.http import response
 from django.shortcuts import redirect, render
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, get_user_model, logout
 from django.urls import reverse, reverse_lazy
 from . import forms
 from django.contrib import messages
@@ -83,3 +83,7 @@ class LoginPage(views.View):
 
 def home(request):
     return render(request, 'registration/home.html')
+
+def logout_view(request):
+    logout(request)
+    return(redirect(reverse('home')))

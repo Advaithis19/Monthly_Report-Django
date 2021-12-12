@@ -2,10 +2,44 @@
 
 
 
-{%block content%}
-    <form method=POST>
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type = "submit">Register</button>
-    </form>
-{%endblock%}
+{% block content %}
+
+
+<div class="container" style="background: transparent;">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="row justify-content-center">
+        <div class="card card-login mb-4 col-md-8 col-12 p-4">
+          <h3 class="header text-center">
+            {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+
+            <p>Welcome Back!</p>
+            <p class="mb-4">Login here</p>
+
+          </h3>
+          <div class="row justify-content-center">
+
+            <form method="POST" class="col-12 text-center">
+              {% csrf_token %}
+              <div class="form-group row mb-4">
+                <label class="login-label col-md-5">Enter Email</label>
+                  <div class="col-md-5">{{ form.email }}</div>
+              </div>
+            <div class="form-group row mb-4">
+                <label class="login-label col-md-5">Enter Password</label>
+                <div class="col-md-5">{{ form.password }}</div>
+            </div>
+            <div class="form-group text-center mb-4">
+                <input type="submit" name="submit" value="Login" class="btn"/>
+            </div>
+            </form>
+
+            <div class="text-center"><span style="color: #fff;">Don't have an account?</span> <a href="{% url 'signup' %}" class="btn">Register Here!</a></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
