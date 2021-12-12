@@ -31,8 +31,11 @@ class CreateUserForm(forms.ModelForm):
         email = self.cleaned_data['email'].lower()
         r = User.objects.filter(email=email)
         if r.count():
-            print("reached")
-            raise  ValidationError("Email already exists")
+            self._errors['email'] = self.error_class(['Username already exists!!'])
+        dom_name = email.split('@')[1]
+        if dom_name!='rvce.edu.in':
+            self._errors['email'] = self.error_class(['You must use an RVCE email address!!'])
+            #raise  ValidationError("Email already exists")
         return email
 
     def clean_password2(self):
@@ -46,8 +49,6 @@ class CreateUserForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        #user.email = self.cleaned_data['email']
-        #user.role = self.cleaned_data['role']
         user.set_password(self.cleaned_data['password'])
         if commit:
             user.save()

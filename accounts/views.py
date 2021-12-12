@@ -11,7 +11,6 @@ from django.contrib.auth import authenticate, login, get_user_model, logout
 from django.urls import reverse, reverse_lazy
 from . import forms
 from django.contrib import messages
-from .models import CustomUser
 
 UserModel = get_user_model()
 # Create your views here.

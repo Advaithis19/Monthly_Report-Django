@@ -1,4 +1,4 @@
-from django.db import models
+
 
 # Create your models here.
 from django.db import models
@@ -33,10 +33,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    #Faculty user creation method
     def create_teacheruser(self, email, password):
         """
-        Creates and saves a staff user with the given email and password.
+        Creates and saves a teacher user with the given email and password.
         """
         user = self.create_user(email=email, password=password)
         user.is_teacher = True
@@ -44,29 +43,36 @@ class UserManager(BaseUserManager):
                                     #self._db references the 'default' under DATABASES in settings.py
         return user
     
-    #SPC User creation method
     def create_adminuser(self, email, password):
         """
-        Creates and saves a staff user with the given email and password.
+        Creates and saves a admin user with the given email and password.
         """
         user = self.create_user(email=email, password=password)
         user.is_admin = True
         user.save(using=self._db)
         return user
     
-    #Super SPC creation method
     def create_superadminuser(self, email, password):
         """
-        Creates and saves a staff user with the given email and password.
+        Creates and saves a superadmin user with the given email and password.
         """
         user = self.create_user(email=email, password=password)
         user.is_superadmin = True
         user.save(using=self._db)
         return user
 
-    
+    def create_staffuser(self, email, password):
+        """
+        Creates and saves a staffuser with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
 
-    #Admin Creation Method
     def create_superuser(self, email, password):
         """
         Creates and saves a superuser with the given email and password.
@@ -85,11 +91,14 @@ class UserManager(BaseUserManager):
 
 
 #==============================================                          User Model            ======================================================
-class CustomUser(AbstractBaseUser):
+class User(AbstractBaseUser):
 
-    #CustomUser defines the model for Users of the portal
+    #User defines the model for Users of the portal
 
-    email           = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(max_length=255, unique=True)
+    date_of_join = models.DateTimeField(auto_now_add=True)
+
+    
 
     # is_active, is_staff and is_superuser attributes are required attributes in a user model to integrate with the admin app.
     is_active       = models.BooleanField(default=True)
@@ -97,11 +106,14 @@ class CustomUser(AbstractBaseUser):
     is_superuser    = models.BooleanField(default=False) # a superuser
 
     # below attributes are defined for providing other functionalities
-    is_teacher          = models.BooleanField(default=False)
-    is_admin     = models.BooleanField(default=False)
-    is_superadmin    = models.BooleanField(default=False)
-    """is_student      = models.BooleanField(default=True)
-    is_faculty      = models.BooleanField(default=False)"""
+    is_teacher = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+    is_superadmin = models.BooleanField(default=False)
+
+    
+
+    """is_student = models.BooleanField(default=True)
+    is_faculty = models.BooleanField(default=False)"""
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
