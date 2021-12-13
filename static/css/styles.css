@@ -136,3 +136,9 @@ main{
     border-radius: 4rem 0 0 4rem;
     color: #27447E;
 }
+
+.form_error{
+    background-color: #f00;
+    border-radius: 30px;
+    color: #fff;
+}

@@ -1,8 +1,10 @@
 from django import forms
+from django.db.models import fields
 from django.forms import widgets
-from django.forms.widgets import PasswordInput
+from django.forms.widgets import PasswordInput, Select, TextInput
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from api.models import  Profile
 
 class LoginForm(forms.Form):
     email       = forms.EmailField(max_length=255, required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
@@ -27,25 +29,24 @@ class CreateUserForm(forms.ModelForm):
         fields=("email","password","password2","role")
 
 
-    def clean_email(self):
+    def clean(self):
+        super(CreateUserForm, self).clean()
+
         email = self.cleaned_data['email'].lower()
-        r = User.objects.filter(email=email)
-        if r.count():
-            self._errors['email'] = self.error_class(['Username already exists!!'])
         dom_name = email.split('@')[1]
         if dom_name!='rvce.edu.in':
-            self._errors['email'] = self.error_class(['You must use an RVCE email address!!'])
+            raise ValidationError('You must use an RVCE email address!!',code='invalid')
             #raise  ValidationError("Email already exists")
-        return email
 
-    def clean_password2(self):
         password1 = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')
 
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Password don't match")
+            raise ValidationError("Passwords don't match")
 
-        return password2
+        return self.cleaned_data
+
+        
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -53,3 +54,34 @@ class CreateUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        exclude = ['user']
+
+        widgets = {
+            'fname': TextInput(attrs={
+                'style': 'width: 100%;',
+                'placeholder': 'Full Name'
+                }),
+            'mname' : TextInput(attrs={
+                'style': 'width: 100%',
+                'placeholder': 'Middle Name'
+            }),
+            'lname': TextInput(attrs={
+                'style': 'width: 100%;',
+                'placeholder': 'Last Name'
+            }),
+            'uname': TextInput(attrs={
+                'style': 'width: 100%;',
+                'placeholder': 'Username'
+            }),
+            'department': Select(attrs={
+                'style': 'width: 100%;',
+                'placeholder': 'Department'
+            })
+        }
+
