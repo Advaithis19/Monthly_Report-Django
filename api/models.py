@@ -59,12 +59,12 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return self.fname 
+        return self.fname or ""
 
 class Grants(models.Model):
     title = models.CharField(max_length=50)
     agency = models.CharField(max_length=50)
-    sanc_amt = models.DecimalField(max_digits=6, decimal_places=2)
+    sanc_amt = models.DecimalField(max_digits=10, decimal_places=2)
     year = models.IntegerField(default = 2022, null=False)
     remarks = models.CharField(max_length=50, null = True)
     date_added = models.DateField(default=timezone.now())

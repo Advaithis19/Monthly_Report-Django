@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="grid">
 <div class="l-navbar" id="navbar">
     <nav class="nav">
       <div>
@@ -12,17 +13,9 @@
             <ion-icon name="home-outline" class="nav_icon"></ion-icon>
             <span class="nav_name">Home</span>
           </a>
-          <a href="#" class="nav_link">
+          <a href="{% url 'teacher_grant' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Grant</span>
-          </a>
-          <a href="#" class="nav_link">
-            <ion-icon name="document-outline"></ion-icon>
-            <span class="nav_name">Proposal</span>
-          </a>
-          <a href="#" class="nav_link">
-            <ion-icon name="document-outline"></ion-icon>
-            <span class="nav_name">Consultancy</span>
           </a>
           <a href="#" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
@@ -30,9 +23,17 @@
           </a>
           <a href="#" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
-            <span class="nav_name">Publication</span>
+            <span class="nav_name">Books</span>
           </a>
           <a href="#" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Workshops</span>
+          </a>
+          <a href="#" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">MOU</span>
+          </a>
+          <!--<a href="#" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Talks</span>
           </a>
@@ -43,7 +44,7 @@
           <a href="#" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Achievements</span>
-          </a>
+          </a> -->
           <a href="{% url 'logout' %}" class="nav_link">
             <ion-icon name="log-out-outline" class="nav_icon"></ion-icon>
             <span class="nav_name">Log out</span>
@@ -56,4 +57,5 @@
   <main id="main-id">
 <p>Hi, {{ user.email }}. You are an teacher.</p>
 </main>
+</div>
 {%endblock%}

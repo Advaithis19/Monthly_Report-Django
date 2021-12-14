@@ -99,7 +99,7 @@ class UpdateProfile(views.View):
             lname = form.cleaned_data['lname']
             uname = form.cleaned_data['uname']
             department = form.cleaned_data['department']
-            p = Profile.objects.all()
+            p = Profile.objects.filter(user = curr_user)
             if(p.count()==0):
                 Profile.objects.create(user = curr_user,fname = fname, mname = mname, lname = lname, uname = uname, department = department)
             else:

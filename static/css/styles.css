@@ -54,15 +54,15 @@ body{
 
 
 main{
-    padding-left: 4.5rem;
     transition: .5s;
 }
   
   /* Left navbar */
+  .grid{
+    display: grid;
+    grid-template-columns: 4.5rem auto;
+  }
   .l-navbar{
-    position: fixed;
-    top: 9.5rem;
-    left: 0;
     width: 4rem;
     height: 100vh;
     background-color: #27447E;
@@ -128,7 +128,7 @@ main{
   }
 
 .main-padding{
-    padding-left: 12rem
+    padding-left: 7.5rem;
 }
 
 .active{

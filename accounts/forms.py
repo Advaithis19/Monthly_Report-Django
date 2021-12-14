@@ -4,7 +4,8 @@ from django.forms import widgets
 from django.forms.widgets import PasswordInput, Select, TextInput
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from api.models import  Profile
+from django.http import request
+from api.models import Profile
 
 class LoginForm(forms.Form):
     email       = forms.EmailField(max_length=255, required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
@@ -62,6 +63,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user']
 
+        
         widgets = {
             'fname': TextInput(attrs={
                 'style': 'width: 100%;',
@@ -69,19 +71,19 @@ class ProfileForm(forms.ModelForm):
                 }),
             'mname' : TextInput(attrs={
                 'style': 'width: 100%',
-                'placeholder': 'Middle Name'
+                'placeholder': 'Middle Name',
             }),
             'lname': TextInput(attrs={
                 'style': 'width: 100%;',
-                'placeholder': 'Last Name'
+                'placeholder': 'Last Name',
             }),
             'uname': TextInput(attrs={
                 'style': 'width: 100%;',
-                'placeholder': 'Username'
+                'placeholder': 'Username',
             }),
             'department': Select(attrs={
                 'style': 'width: 100%;',
-                'placeholder': 'Department'
+                'placeholder': 'Department',
             })
         }
 
