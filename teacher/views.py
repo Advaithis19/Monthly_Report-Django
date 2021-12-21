@@ -22,7 +22,7 @@ class TeacherDashboard(LoginRequiredMixin,views.View):
             return redirect(reverse('login'))
         return(render(request,'teacher/teacher_home.html'))
 
-class GrantView(views.View,LoginRequiredMixin):
+class GrantCreateView(views.View,LoginRequiredMixin):
     login_url = '/login'
     redirect_field_name = 'login'
 
@@ -42,3 +42,87 @@ class GrantView(views.View,LoginRequiredMixin):
             print('error')    
         
             return render(request,'teacher/teacher_grant.html',{'form':form})
+
+class EventCreateView(views.View,LoginRequiredMixin):
+    login_url = '/login'
+    redirect_field_name = 'login'
+
+    def get(self,request):
+        curr_user = request.user
+        if not curr_user.is_teacher:
+            logout(request)
+            return redirect(reverse('login'))
+        form = forms.EventForm
+        return render(request,'teacher/teacher_event.html',{'form': form})
+    def post(self,request):
+        form = forms.EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('teacher_event'))
+        else:
+            print('error')    
+        
+            return render(request,'teacher/teacher_event.html',{'form':form})
+
+class BookCreateView(views.View,LoginRequiredMixin):
+    login_url = '/login'
+    redirect_field_name = 'login'
+
+    def get(self,request):
+        curr_user = request.user
+        if not curr_user.is_teacher:
+            logout(request)
+            return redirect(reverse('login'))
+        form = forms.BookForm
+        return render(request,'teacher/teacher_book.html',{'form': form})
+    def post(self,request):
+        form = forms.BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('teacher_book'))
+        else:
+            print('error')    
+        
+            return render(request,'teacher/teacher_book.html',{'form':form})
+
+class WorkshopCreateView(views.View,LoginRequiredMixin):
+    login_url = '/login'
+    redirect_field_name = 'login'
+
+    def get(self,request):
+        curr_user = request.user
+        if not curr_user.is_teacher:
+            logout(request)
+            return redirect(reverse('login'))
+        form = forms.WorkshopForm
+        return render(request,'teacher/teacher_workshop.html',{'form': form})
+    def post(self,request):
+        form = forms.WorkshopForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('teacher_Workshop'))
+        else:
+            print('error')    
+        
+            return render(request,'teacher/teacher_workshop.html',{'form':form})
+
+class MouCreateView(views.View,LoginRequiredMixin):
+    login_url = '/login'
+    redirect_field_name = 'login'
+
+    def get(self,request):
+        curr_user = request.user
+        if not curr_user.is_teacher:
+            logout(request)
+            return redirect(reverse('login'))
+        form = forms.MouForm
+        return render(request,'teacher/teacher_mou.html',{'form': form})
+    def post(self,request):
+        form = forms.MouForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('teacher_mou'))
+        else:
+            print('error')    
+        
+            return render(request,'teacher/teacher_mou.html',{'form':form})

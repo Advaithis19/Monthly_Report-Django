@@ -10,13 +10,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 usermodel = get_user_model()
 
 class Profile(models.Model):
-    user = models.OneToOneField(usermodel, null=True, on_delete=CASCADE)
+    user = models.OneToOneField(usermodel, on_delete=CASCADE)
 
-    fname = models.CharField(max_length=50, null=True)
-    mname = models.CharField(max_length=50, null=True)
-    lname = models.CharField(max_length=50, null=True)
+    fname = models.CharField(max_length=50)
+    mname = models.CharField(max_length=50, null=True, blank=True)
+    lname = models.CharField(max_length=50, null=True, blank=True)
 
-    uname = models.CharField(max_length=50, null=True)
+    uname = models.CharField(max_length=50)
 
 
     AEROSPACE = 'AE'
@@ -65,8 +65,8 @@ class Grants(models.Model):
     title = models.CharField(max_length=50)
     agency = models.CharField(max_length=50)
     sanc_amt = models.DecimalField(max_digits=10, decimal_places=2)
-    year = models.IntegerField(default = 2022, null=False)
-    remarks = models.CharField(max_length=50, null = True)
+    year = models.IntegerField(default = 2022)
+    remarks = models.CharField(max_length=50, null = True, blank=True)
     date_added = models.DateField(default=timezone.now())
 
     PI = models.ForeignKey(Profile, on_delete=CASCADE, related_name='grants_prinvestigated', null=True)
@@ -96,6 +96,7 @@ class Proposal(models.Model):
         max_length=3,
         choices=status_list,
         null=True,
+        blank=True
     )
 
     date_added = models.DateField(default=timezone.now())
@@ -135,9 +136,9 @@ class Lecture(models.Model):
     topic = models.CharField(max_length=50)
     res_person = models.CharField(max_length=50)
     organisation = models.CharField(max_length=50)
-    n_stud = models.IntegerField(null=True)
-    n_fac = models.IntegerField(null=True)
-    n_ind = models.IntegerField(null=True)
+    n_stud = models.IntegerField(null=True, blank=True)
+    n_fac = models.IntegerField(null=True, blank=True)
+    n_ind = models.IntegerField(null=True, blank=True)
     date_added = models.DateField(default=timezone.now())
 
     f_id = models.ForeignKey(Profile, on_delete=CASCADE)
@@ -149,10 +150,9 @@ class Lecture(models.Model):
 class Event(models.Model):
     title = models.CharField(primary_key=True, max_length=50)
     venue = models.CharField(max_length=100)
-    date_added = models.DateField()
-    n_stud = models.IntegerField(null=True)
-    n_fac = models.IntegerField(null=True)
-    n_ind = models.IntegerField(null=True)
+    n_stud = models.IntegerField(null=True, blank=True)
+    n_fac = models.IntegerField(null=True, blank=True)
+    n_ind = models.IntegerField(null=True, blank=True)
     date = models.DateField()
     date_added = models.DateField(default=timezone.now())
 
@@ -164,9 +164,9 @@ class Event(models.Model):
 class Talk(models.Model):
     topic = models.CharField(max_length=50)
     venue = models.CharField(max_length=100)
-    n_stud = models.IntegerField(null=True)
-    n_fac = models.IntegerField(null=True)
-    n_ind = models.IntegerField(null=True)
+    n_stud = models.IntegerField(null=True, blank=True)
+    n_fac = models.IntegerField(null=True, blank=True)
+    n_ind = models.IntegerField(null=True, blank=True)
     date = models.DateField()
     date_added = models.DateField(default=timezone.now())
 
@@ -217,7 +217,8 @@ class Conference(models.Model):
     nat_int = models.CharField(
         max_length=3,
         choices=choice_list,
-        null=True
+        null=True, 
+        blank=True
     )
     date_added = models.DateField(default=timezone.now())
 
@@ -231,7 +232,6 @@ class Conference(models.Model):
 class MoU(models.Model):
     organisation = models.CharField(primary_key=True, max_length=50)
     mod_col = models.CharField(max_length=25)
-    date_added = models.DateField()
     validity = models.IntegerField()
     date = models.DateField()
     date_added = models.DateField(default=timezone.now())
@@ -258,7 +258,8 @@ class Patent(models.Model):
     status = models.CharField(
         max_length=3,
         choices=status_list,
-        null=True,
+        null=True, 
+        blank=True
     )
     date_added = models.DateField(default=timezone.now())
 
@@ -277,7 +278,7 @@ class Industrial_visit(models.Model):
             MinValueValidator(1)
         ]
     )
-    n_stud = models.IntegerField(null=True)
+    n_stud = models.IntegerField(null=True, blank=True)
     date_added = models.DateField(default=timezone.now())
 
     u_id = models.ManyToManyField(Profile)
@@ -289,7 +290,7 @@ class Membership(models.Model):
     mem_id = models.IntegerField(primary_key=True)
     membership = models.CharField(max_length=50)
     association = models.CharField(max_length=50)
-    term=models.IntegerField(null=True)
+    term=models.IntegerField(null=True, blank=True)
     date_added = models.DateField(default=timezone.now())
 
     u_id = models.ManyToManyField(Profile)
