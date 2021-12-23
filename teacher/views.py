@@ -100,7 +100,7 @@ class WorkshopCreateView(views.View,LoginRequiredMixin):
         form = forms.WorkshopForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('teacher_Workshop'))
+            return redirect(reverse('teacher_workshop'))
         else:
             print('error')    
         

@@ -149,7 +149,7 @@ class WorkshopForm(forms.ModelForm):
                 'placeholder': 'Date of Event',
             }),
             
-            'u_id': Select(attrs={
+            'u_id': SelectMultiple(attrs={
                 'style': 'width: 100%;',
                 'placeholder': 'Faculty involved',
             }),
