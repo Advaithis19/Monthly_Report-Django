@@ -80,7 +80,7 @@ class Grants(models.Model):
 class Proposal(models.Model):
     title = models.CharField(primary_key=True, max_length=50)
     submitted_to = models.CharField(max_length=50)
-    budg_amt = models.DecimalField(max_digits=6, decimal_places=2)
+    budg_amt = models.DecimalField(max_digits=10, decimal_places=2)
 
     ACCEPT = 'AC'
     REJECT = 'RE'
@@ -112,7 +112,7 @@ class Proposal(models.Model):
 class Consultancy(models.Model):
     title = models.CharField(max_length=50)
     fund_agency = models.CharField(max_length=50)
-    rec_amt = models.DecimalField(max_digits=6, decimal_places=2)
+    rec_amt = models.DecimalField(max_digits=10, decimal_places=2)
     date_added = models.DateField(default=timezone.now())
 
     f_id = models.ForeignKey(Profile, on_delete=CASCADE)

@@ -63,7 +63,7 @@
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Conferences</span>
           </a>
-          <a href="{% url 'teacher_industrial' %}" class="nav_link">
+          <a href="{% url 'teacher_industrial_visit' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Industrial Visits</span>
           </a>
@@ -91,7 +91,7 @@
       <div class="col-12">
         <div class="row justify-content-center">
           <div class="card card-login mb-4 col-md-8 col-12 p-4">
-            <h3 class="header mb-4 text-center">Add Conference</h3>
+            <h3 class="header mb-4 text-center">Add Conference publications</h3>
             <div class="row justify-content-center">
               <form method="POST">
                 {% csrf_token %}
@@ -131,7 +131,7 @@
                 </div>
                 <div class="form-group row mb-4">
                 <label class="login-label col-md-12">Faculty Involved</label>
-                  <div class="col-md-12">{{ form.f_id }}</div>
+                  <div class="col-md-12">{{ form.u_id }}</div>
                 </div>
                 <div class="form-group text-center">
                     <input type="submit" name="submit" value="Submit" class="btn"/>

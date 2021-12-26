@@ -63,7 +63,7 @@
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Conferences</span>
           </a>
-          <a href="{% url 'teacher_industrial' %}" class="nav_link active">
+          <a href="{% url 'teacher_industrial_visit' %}" class="nav_link active">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Industrial Visits</span>
           </a>
@@ -117,6 +117,10 @@
                     <label class="login-label col-md-12">Industry visited</label>
                       <div class="col-md-12" style="width:100%;">{{ form.industry }}</div>
                 </div>
+                <div class="form-group row mb-4">
+                  <label class="login-label col-md-12">Semester</label>
+                    <div class="col-md-12" style="width:100%;">{{ form.semester }}</div>
+              </div>
                 <div class="form-group row mb-4">
                     <label class="login-label col-md-12">No of Students</label>
                       <div class="col-md-12" style="width:100%;">{{ form.n_stud }}</div>

@@ -457,7 +457,7 @@ class IndustrialForm(forms.ModelForm):
                 'style': 'width: 100%;',
                 'placeholder': 'Industry',
             }),
-            'semester': Select(attrs={
+            'semester': NumberInput(attrs={
                 'style': 'width: 100%;',
                 'placeholder': 'Semester',
             }),

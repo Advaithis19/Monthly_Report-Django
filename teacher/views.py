@@ -289,7 +289,7 @@ class IndustrialCreateView(views.View,LoginRequiredMixin):
         form = forms.IndustrialForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('teacher_industrial'))
+            return redirect(reverse('teacher_industrial_visit'))
         else:
             print('error')    
         
