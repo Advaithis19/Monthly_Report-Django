@@ -11,42 +11,70 @@
           <ion-icon name="menu-outline" class="nav_toggle" id="nav-toggle"></ion-icon>
         </div>
         <div class="nav_list">
-         <a href="{% url 'teacher_home' %}" class="nav_link">
+          <a href="{% url 'sadmin_home' %}" class="nav_link">
             <ion-icon name="home-outline" class="nav_icon"></ion-icon>
             <span class="nav_name">Home</span>
           </a>
-          <a href="{% url 'teacher_grant' %}" class="nav_link">
+          <a href="{% url 'sadmin_grant' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Grant</span>
           </a>
-          <a href="{% url 'teacher_event' %}" class="nav_link">
+          <a href="{% url 'sadmin_event' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Event</span>
           </a>
-          <a href="{% url 'teacher_book' %}" class="nav_link">
+          <a href="{% url 'sadmin_book' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Books</span>
           </a>
-          <a href="{% url 'teacher_workshop' %}" class="nav_link">
+          <a href="{% url 'sadmin_workshop' %}" class="nav_link active">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Workshops</span>
           </a>
-          <a href="{% url 'teacher_mou' %}" class="nav_link active">
+          <a href="{% url 'sadmin_mou' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">MOU</span>
           </a>
-          <!--<a href="#" class="nav_link">
+          <a href="{% url 'teacher_talk' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Talks</span>
           </a>
-          <a href="#" class="nav_link">
+          <a href="{% url 'teacher_proposal' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Proposals</span>
+          </a>
+          <a href="{% url 'teacher_consultancy' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Consultancy</span>
+          </a>
+          <a href="{% url 'teacher_lecture' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Lectures</span>
           </a>
-          <a href="#" class="nav_link">
+          <a href="{% url 'teacher_activity' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Other Activities</span>
+          </a>
+          <a href="{% url 'teacher_achievement' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Achievements</span>
-          </a> -->
+          </a>
+          <a href="{% url 'teacher_conference' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Conferences</span>
+          </a>
+          <a href="{% url 'teacher_industrial' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Industrial Visits</span>
+          </a>
+          <a href="{% url 'teacher_membership' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Memberships</span>
+          </a>
+          <a href="{% url 'teacher_patent' %}" class="nav_link">
+            <ion-icon name="document-outline"></ion-icon>
+            <span class="nav_name">Patents</span>
+          </a>
           <a href="{% url 'logout' %}" class="nav_link">
             <ion-icon name="log-out-outline" class="nav_icon"></ion-icon>
             <span class="nav_name">Log out</span>
@@ -56,58 +84,62 @@
       
     </nav>
   </div>
-  <main>
-<div class="login">
-  <div class="container" style="background: transparent;">
-    <div class="row justify-content-center trans">
-      <div class="col-12">
-        <div class="row justify-content-center">
-          <div class="card card-login mb-4 col-md-8 col-12 p-4">
-            <h3 class="header mb-4 text-center">Add MoU</h3>
-            <div class="row justify-content-center">
-              <form method="POST">
-                {% csrf_token %}
-                <div class="form-group form_error">
-                  {% if form.errors %}
-                    {% for key,value in form.errors.items %} 
-                    <p>
-                      {{ value }}
-                    </p>
-                    {% endfor %}
-
-                  {% endif %}
+  <main id="main-id">
+    <div class="login">
+        <div class="container" style="background: transparent;">
+          <div class="row justify-content-center trans">
+            <div class="col-12">
+              <div class="row justify-content-center">
+                <div class="card card-login mb-4 col-md-8 col-12 p-4">
+                  <h3 class="header mb-4 text-center">Provide Year and Month</h3>
+                  <div class="row justify-content-center">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group row mb-4">
+                            <label class="login-label col-md-5">Month</label>
+                              <div class="col-md-5">{{ form.month }}</div>
+                        </div>
+                        <div class="form-group row mb-4">
+                            <label class="login-label col-md-5">Year</label>
+                              <div class="col-md-5">{{ form.year }}</div>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" name="submit" value="Submit" class="btn"/>
+                        </div>
+                    </form>
+                  </div>
                 </div>
-                <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Organisation</label>
-                      <div class="col-md-12">{{ form.organisation }}</div>
-                </div>
-                <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Mode of Collaboration</label>
-                      <div class="col-md-12" style="width:100%;">{{ form.mod_col }}</div>
-                </div>
-                <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Validity</label>
-                      <div class="col-md-12">{{ form.validity }}</div>
-                </div>
-                <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Date</label>
-                      <div class="col-md-12">{{ form.date }}</div>
-                </div>
-                <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Faculty involved</label>
-                      <div class="col-md-12">{{ form.u_id }}</div>
-                </div>
-                <div class="form-group text-center">
-                    <input type="submit" name="submit" value="Submit" class="btn"/>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    
+      <div class="container-fluid">
+        <table class="table table-bordered" style="background-color: #fff;">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Faculty involved</th>
+                <th scope="col">Event</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for d in data %}
+              <tr>
+                
+                <td scope="row">{% for faculty in d.u_id.all %} {{faculty.fname}} {% if faculty.mname %}{{faculty.mname}}{% endif %} {{faculty.lname}}<br> {% endfor %} </td>
+                <!-- rowspan="{{ d.u_id.length }} -->
+                <td style="vertical-align: middle;">{{d.event_name}}</td>
+                <td style="vertical-align: middle;">{{d.venue}}</td>
+                <td style="vertical-align: middle;">{{d.date}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>  
 </main>
 </div>
 {% endblock %}
+

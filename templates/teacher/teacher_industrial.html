@@ -15,7 +15,7 @@
             <ion-icon name="home-outline" class="nav_icon"></ion-icon>
             <span class="nav_name">Home</span>
           </a>
-          <a href="{% url 'teacher_grant' %}" class="nav_link active">
+          <a href="{% url 'teacher_grant' %}" class="nav_link">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Grant</span>
           </a>
@@ -63,7 +63,7 @@
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Conferences</span>
           </a>
-          <a href="{% url 'teacher_industrial' %}" class="nav_link">
+          <a href="{% url 'teacher_industrial' %}" class="nav_link active">
             <ion-icon name="document-outline"></ion-icon>
             <span class="nav_name">Industrial Visits</span>
           </a>
@@ -91,7 +91,7 @@
       <div class="col-12">
         <div class="row justify-content-center">
           <div class="card card-login mb-4 col-md-8 col-12 p-4">
-            <h3 class="header mb-4 text-center">Add Grant</h3>
+            <h3 class="header mb-4 text-center">Add Industrial visit</h3>
             <div class="row justify-content-center">
               <form method="POST">
                 {% csrf_token %}
@@ -106,33 +106,25 @@
                   {% endif %}
                 </div>
                 <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Title</label>
-                      <div class="col-md-12">{{ form.title }}</div>
+                    <label class="login-label col-md-12">Visit#</label>
+                      <div class="col-md-12">{{ form.visit_no }}</div>
                 </div>
                 <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Agency</label>
-                      <div class="col-md-12" style="width:100%;">{{ form.agency }}</div>
+                    <label class="login-label col-md-12">Purpose of visit</label>
+                      <div class="col-md-12" style="width:100%;">{{ form.purpose }}</div>
                 </div>
                 <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Sanction Amount</label>
-                      <div class="col-md-12">{{ form.sanc_amt }}</div>
+                    <label class="login-label col-md-12">Industry visited</label>
+                      <div class="col-md-12" style="width:100%;">{{ form.industry }}</div>
                 </div>
                 <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Year</label>
-                      <div class="col-md-12">{{ form.year }}</div>
+                    <label class="login-label col-md-12">No of Students</label>
+                      <div class="col-md-12" style="width:100%;">{{ form.n_stud }}</div>
                 </div>
                 <div class="form-group row mb-4">
-                    <label class="login-label col-md-12">Remarks</label>
-                      <div class="col-md-12">{{ form.remarks }}</div>
+                <label class="login-label col-md-12">Faculty Involved</label>
+                  <div class="col-md-12">{{ form.u_id }}</div>
                 </div>
-                <div class="form-group row mb-4">
-                  <label class="login-label col-md-12">PI</label>
-                    <div class="col-md-12">{{ form.PI }}</div>
-              </div>
-              <div class="form-group row mb-4">
-                <label class="login-label col-md-12">Co-PI</label>
-                  <div class="col-md-12">{{ form.CO_PI }}</div>
-            </div>
                 <div class="form-group text-center">
                     <input type="submit" name="submit" value="Submit" class="btn"/>
                 </div>
